@@ -4,8 +4,8 @@ import com.rocketseat.experts.club.jwtrefreshtoken.jwt.Util;
 import com.rocketseat.experts.club.jwtrefreshtoken.model.RefreshToken;
 import com.rocketseat.experts.club.jwtrefreshtoken.model.User;
 import com.rocketseat.experts.club.jwtrefreshtoken.request.LoginRequest;
-import com.rocketseat.experts.club.jwtrefreshtoken.request.TokenRefreshRequest;
-import com.rocketseat.experts.club.jwtrefreshtoken.response.TokenRefreshResponse;
+import com.rocketseat.experts.club.jwtrefreshtoken.request.RefreshTokenRequest;
+import com.rocketseat.experts.club.jwtrefreshtoken.response.RefreshTokenResponse;
 import com.rocketseat.experts.club.jwtrefreshtoken.service.LoginService;
 import com.rocketseat.experts.club.jwtrefreshtoken.service.RefreshTokenService;
 import com.rocketseat.experts.club.jwtrefreshtoken.service.UserService;
@@ -52,7 +52,7 @@ public class UserController {
 
     @PostMapping("/refreshtoken")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> refreshtoken( @RequestBody TokenRefreshRequest request) {
+    public ResponseEntity<?> refreshtoken( @RequestBody RefreshTokenRequest request) {
 
         log.info("Solicitação de criação de refresh token para o token [{}]", request);
         return refreshTokenService.findByToken(request.getRefreshToken())
@@ -61,7 +61,7 @@ public class UserController {
                 .map(user -> {
                     String token = refreshTokenService.generateTokenFromUsername(user.getUsername());
                    log.info("refresh token gerado com sucesso [{}]", token);
-                    return ResponseEntity.ok(new TokenRefreshResponse(token, request.getRefreshToken(), "Bearer"));
+                    return ResponseEntity.ok(new RefreshTokenResponse(token, request.getRefreshToken(), "Bearer"));
                 })
                 .orElseThrow(() -> new CredentialsExpiredException(request.getRefreshToken()));
     }
