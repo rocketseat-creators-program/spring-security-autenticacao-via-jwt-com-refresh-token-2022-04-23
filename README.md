@@ -7,7 +7,7 @@
 Nesta aula você irá aprender a implementar autenticação de usuários via token JWT e como implementar a geração e validação de refresh token em uma aplicação Spring.
 
 
-[slides]()
+[slides](https://github.com/rocketseat-experts-club/spring-security-autenticacao-via-jwt-com-refresh-token-2022-04-23/blob/main/Spring%20Security%20_%20%20autenticac%CC%A7a%CC%83o%20via%20JWT%20%20com%20%20refresh%20token%20%20(1).pdf)
 
 Tecnologias utilizadas:
 
